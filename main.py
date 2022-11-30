@@ -15,12 +15,12 @@ def button_callback(channel):
             print ("function called")
             camera = PiCamera()
             timestr = time.strftime("%Y%m%d-%H%M%S")
-            camera.capture('image/' + str(timestr))
+            path = f"image/{timestr}"
+            camera.capture(path)
 
-            image = Image.open('image/' + str(timestr))
+            image = Image.open(path)
             gray = ImageOps.grayscale(image)
 
-            #Temporarily save the grayscale file
             filename = f"{timestr}.png".format(os.getpid())
             gray.save(filename)
 
