@@ -12,6 +12,8 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(5, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
+GPIO.add_event_detect(5,GPIO.RISING,callback=button_callback)
+
 try:
     while True:
 
@@ -33,8 +35,6 @@ try:
             print(text)
 
             raise CodeFinished
-
-        GPIO.add_event_detect(5,GPIO.FALLING,callback=button_callback)
 
 except CodeFinished:
 
