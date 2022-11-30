@@ -1,5 +1,6 @@
 import numpy as np
 import cv2
+import argparse
 from imutils.object_detection import non_max_suppression
 import pytesseract
 from matplotlib import pyplot as plt
@@ -8,9 +9,11 @@ from matplotlib import pyplot as plt
 args = {"image":"../input/text-detection/example-images/Example-images/ex24.jpg", "east":"../input/text-detection/east_text_detection.pb", "min_confidence":0.5, "width":320, "height":320}
 
 #Give location of the image to be read.
+ap = argparse.ArgumentParser()
+ap.add_argument("-i", "--image", required=True, help="path to input image to be OCR'd")
+argsIn = vars(ap.parse_args())
 
-args['image']="example-image.jpg"
-image = cv2.imread(args['image'])
+image = cv2.imread(argsIn["image"])
 
 #Saving a original image and shape
 orig = image.copy()
