@@ -12,6 +12,7 @@ GPIO.setup(5, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         
 def button_callback(channel):
 
+            print ("function called")
             camera = PiCamera()
             timestr = time.strftime("%Y%m%d-%H%M%S")
             camera.capture('image/' + str(timestr))
