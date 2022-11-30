@@ -15,7 +15,7 @@ def button_callback(channel):
             print ("function called")
             camera = PiCamera()
             timestr = time.strftime("%Y%m%d-%H%M%S")
-            path = f"image/{timestr}"
+            path = f"image/{timestr}.jpg"
             camera.capture(path)
 
             image = Image.open(path)
