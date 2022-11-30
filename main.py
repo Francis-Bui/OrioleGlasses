@@ -1,5 +1,6 @@
 from picamera import PiCamera
 from PIL import Image, ImageOps
+from gtts import gTTS
 import pytesseract
 import time
 import os
@@ -15,7 +16,7 @@ def button_callback(channel):
             print ("function called")
             camera = PiCamera()
             timestr = time.strftime("%Y%m%d-%H%M%S")
-            path = f"image/{timestr}.jpg"
+            path = f"image/image{timestr}.jpg"
             camera.capture(path)
 
             image = Image.open(path)
@@ -24,8 +25,8 @@ def button_callback(channel):
             filename = f"{timestr}.png".format(os.getpid())
             gray.save(filename)
 
-            #Open the grayscale file and run OCR on it
             text = pytesseract.image_to_string(Image.open(filename))
+            audio = gTTS(text=text, lang="en", slow=False)
             print(text)
 
 try:
