@@ -6,7 +6,7 @@ import pytesseract
 from matplotlib import pyplot as plt
 
 #Creating argument dictionary for the default arguments needed in the code. 
-args = {"image":"../input/text-detection/example-images/Example-images/ex24.jpg", "east":"../input/text-detection/east_text_detection.pb", "min_confidence":0.5, "width":320, "height":320}
+args = {"east":"frozen_east_text_detection.pb", "min_confidence":0.5, "width":320, "height":320}
 
 #Give location of the image to be read.
 ap = argparse.ArgumentParser()
