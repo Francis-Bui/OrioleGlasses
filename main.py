@@ -29,6 +29,7 @@ def button_callback(channel):
             camera.capture(path)
 
             image = Image.open(path)
+            image = image.rotate(90, expand = True)
             gray = ImageOps.grayscale(image)
 
             filename = f"{timestr}.png".format(os.getpid())
