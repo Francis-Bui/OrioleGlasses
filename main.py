@@ -6,11 +6,20 @@ import time
 import os
 import time
 import RPi.GPIO as GPIO
+import playsound
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(5, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         
+def speak(text):
+    tts = gTTS(text=text, lang='en')
+
+    filename = "temp.mp3"
+    tts.save(filename)
+    playsound.playsound(filename)
+    os.remove(filename)
+
 def button_callback(channel):
 
             print ("function called")
@@ -25,9 +34,9 @@ def button_callback(channel):
             filename = f"{timestr}.png".format(os.getpid())
             gray.save(filename)
 
-            text = pytesseract.image_to_string(Image.open(filename))
-            audio = gTTS(text=text, lang="en", slow=False)
-            print(text)
+            newText = pytesseract.image_to_string(Image.open(filename))
+            speak(newText)
+            print(newText) # print for debug purposes
 
 try:
     while True:
